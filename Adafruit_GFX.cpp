@@ -750,6 +750,19 @@ void Adafruit_GFX::drawRGBBitmap(int16_t x, int16_t y,
 // TEXT- AND CHARACTER-HANDLING FUNCTIONS ----------------------------------
 
 // Draw a character
+void Adafruit_GFX::drawHeart(int16_t x,int16_t y,float size,uint16_t color )
+{
+  uint16_t xnum,ynum;
+  startWrite();
+  for(float i = 0;i < 6283;i+= 1)
+  {
+      xnum = x + size * int(10*(2 * sin(i) - sin(2 * i) + 3));
+      ynum = y + size * int(10*(2 * cos(i) - cos(2 * i) + 3));
+      writePixel(128 - xnum,64 - ynum,color);
+   }
+   endWrite();
+}
+
 void Adafruit_GFX::drawChar(int16_t x, int16_t y, unsigned char c,
   uint16_t color, uint16_t bg, uint8_t size) {
 

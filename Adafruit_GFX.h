@@ -95,6 +95,7 @@ class Adafruit_GFX : public Print {
       uint16_t *bitmap, uint8_t *mask, int16_t w, int16_t h),
     drawChar(int16_t x, int16_t y, unsigned char c, uint16_t color,
       uint16_t bg, uint8_t size),
+	drawHeart(int16_t x,int16_t y,float size,uint16_t color),
     setCursor(int16_t x, int16_t y),
     setTextColor(uint16_t c),
     setTextColor(uint16_t c, uint16_t bg),
@@ -106,7 +107,7 @@ class Adafruit_GFX : public Print {
       int16_t *x1, int16_t *y1, uint16_t *w, uint16_t *h),
     getTextBounds(const __FlashStringHelper *s, int16_t x, int16_t y,
       int16_t *x1, int16_t *y1, uint16_t *w, uint16_t *h);
-
+	
 #if ARDUINO >= 100
   virtual size_t write(uint8_t);
 #else
