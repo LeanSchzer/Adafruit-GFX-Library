@@ -96,6 +96,7 @@ class Adafruit_GFX : public Print {
     drawChar(int16_t x, int16_t y, unsigned char c, uint16_t color,
       uint16_t bg, uint8_t size),
 	drawHeart(int16_t x,int16_t y,float size,uint16_t color),
+	drawMyEllipse(int16_t x,int16_t y,int16_t a,int16_t b,uint16_t color),
     setCursor(int16_t x, int16_t y),
     setTextColor(uint16_t c),
     setTextColor(uint16_t c, uint16_t bg),

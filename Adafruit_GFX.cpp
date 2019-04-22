@@ -749,6 +749,55 @@ void Adafruit_GFX::drawRGBBitmap(int16_t x, int16_t y,
 
 // TEXT- AND CHARACTER-HANDLING FUNCTIONS ----------------------------------
 
+void Adafruit_GFX:: drawMyEllipse(int16_t x,int16_t y,int16_t a,int16_t b,uint16_t color)
+{
+    int16_t asq = a * a;
+    int16_t bsq = b * b;
+    int16_t x0 = 0;
+    int16_t y0 = b;
+    int16_t d = 2 * bsq - 2 * b * asq + asq;
+	startWrite();
+    writePixel(x,y + b,color);
+    writePixel(x,y - b, color);
+    int16_t P_x = (double)asq/sqrt((double)(asq + bsq)) + 0.5;
+
+    while(x0 <= P_x)
+    {
+      if(d < 0)
+        d += 2 * bsq * (2 * x0 + 3);
+      else
+      {
+        d += 2 * bsq * (2 * x0 + 3) - 4 * asq * (y0 - 1);
+        y0 --;
+       }
+       x0++;
+       writePixel(x + x0, y + y0,color);
+       writePixel(x - x0, y + y0,color);
+       writePixel(x + x0, y - y0,color);
+       writePixel(x - x0, y - y0,color);
+    }
+
+    d = bsq * (x0 * x0 + x0) + asq * (y0 * y0 - y0) - asq * bsq;
+    while(y0 >= 0)
+    {
+       writePixel(x + x0, y + y0,color);
+       writePixel(x - x0, y + y0,color);
+       writePixel(x + x0, y - y0,color);
+       writePixel(x - x0, y - y0,color);
+      y0 --;
+      if(d < 0)
+      {
+         x0++;
+         d = d - 2 * asq * y0 - asq + 2 * bsq * x0 + 2 * bsq;
+       }
+       else
+        d = d - 2 * asq * y0 - asq;
+     }
+	 endWrite();
+}
+
+
+
 // Draw a character
 void Adafruit_GFX::drawHeart(int16_t x,int16_t y,float size,uint16_t color )
 {
